@@ -1,1 +1,1 @@
-# RainOfCubes-2.0
+# RainOfCubes
