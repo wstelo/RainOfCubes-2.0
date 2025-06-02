@@ -40,7 +40,7 @@ public class TimeViewer : MonoBehaviour
         _timerText.text = $"";
     }
 
-    public void DisplayTime(int currentTime, int delayToDestroy)
+    public void DisplayTime(float currentTime, float delayToDestroy)
     {
         _timerText.text = $"{currentTime} / {delayToDestroy}";
     }

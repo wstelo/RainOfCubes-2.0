@@ -1,46 +1,56 @@
-using System;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(MeshRenderer), typeof(Rigidbody),typeof(Timer))]
+[RequireComponent (typeof(CubeCollisionDetector))]
 
 public class Cube : Item
 {
+    private CubeCollisionDetector _detector;
+    private Rigidbody _rigidbody;
     private Material _material;
-    private bool _hasFirstCollision = false;
     private int _minDelay = 2;
     private int _maxDelay = 5;
     private Color _defaultColor;
-    private Rigidbody Rigidbody;
 
     public event Action CollisionDetected;
 
-    public int DelayToDestroy { get; private set; }
-
-    private void Awake()
+    public override void Awake()
     {
-        Rigidbody = GetComponent<Rigidbody>();
+        base.Awake();
+        _rigidbody = GetComponent<Rigidbody>();
         _material = GetComponent<MeshRenderer>().material;
+        _detector = GetComponent<CubeCollisionDetector>();
         DelayToDestroy = UnityEngine.Random.Range(_minDelay, _maxDelay + 1);
         _defaultColor = _material.color;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public override void OnEnable()
     {
-        if (collision.gameObject.TryGetComponent(out Platform platform) && _hasFirstCollision == false)
-        {
-            _hasFirstCollision = true;
-            SetRandomColor();
-            CollisionDetected?.Invoke();
-        }
+        base.OnEnable();
+        _detector.RequiredSurfaceDetected += Encounter;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        _detector.RequiredSurfaceDetected -= Encounter;
+    }
+
+    private void Encounter()
+    {
+        SetRandomColor();
+        CollisionDetected?.Invoke();
+        Timer.Enable(DelayToDestroy);
     }
 
     public override void RefreshParameters()
     {
-        Rigidbody.angularVelocity = Vector3.zero;
-        Rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.velocity = Vector3.zero;
         DelayToDestroy = UnityEngine.Random.Range(_minDelay, _maxDelay + 1);
         _material.color = _defaultColor;
-        _hasFirstCollision = false;
+        _detector.Refresh();
     }
 
     private void SetRandomColor()

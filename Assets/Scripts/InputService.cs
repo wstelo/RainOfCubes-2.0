@@ -3,13 +3,15 @@ using System;
 
 public class InputService : MonoBehaviour
 {
-    public event Action ButtonClicked;
+    private const KeyCode _escapeKeyCode = KeyCode.Escape;
+
+    public event Action StopButtonClicked;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(_escapeKeyCode))
         {
-            ButtonClicked?.Invoke();
+            StopButtonClicked?.Invoke();
         }
     }
 }
