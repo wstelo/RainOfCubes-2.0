@@ -7,7 +7,7 @@ public abstract class SpawnerViewer <T> : MonoBehaviour where T : Item
     [SerializeField] private TMP_Text _header;
     [SerializeField] private InfoPanel _totalPanel;
     [SerializeField] private InfoPanel _createdPanel;
-    [SerializeField] private InfoPanel _ActivePanel;
+    [SerializeField] private InfoPanel _activePanel;
 
     private void Start()
     {
@@ -40,6 +40,6 @@ public abstract class SpawnerViewer <T> : MonoBehaviour where T : Item
 
     private void RefreshActiveCounter(int count)
     {
-        _ActivePanel.RefreshCount(count);
+        _activePanel.RefreshCount(count);
     }
 }

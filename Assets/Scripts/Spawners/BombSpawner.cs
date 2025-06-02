@@ -1,36 +1,34 @@
+using System;
 using UnityEngine;
 
-[RequireComponent (typeof(Exploder))]
 
 public class BombSpawner : Spawner<Bomb>
 {
-    private Exploder _exploder;
-    private Vector3 _spawnPosition;
+
+    public event Action <Item> ObjectReleased;
 
     public override void Awake()
     {
-        _exploder = GetComponent<Exploder>();
         base.Awake();
     }
 
-    public void GetBomb(Vector3 position)
+    public void EnableObject(Vector3 position)
     {
-        _spawnPosition = position;
-        Pool.Get();
+        Item currentObject = Pool.Get();
+        currentObject.transform.position = position;
     }
 
     public override void ReleasedObject(Item item)
     {       
         base.ReleasedObject(item);
-        _exploder.Explode(item); 
+        ObjectReleased?.Invoke(item);
         item.RefreshParameters();
         Pool.Release(item);
     }
 
-    public override void GetObject(Item cube)
+    public override void Initialize(Item cube)
     {
-        base.GetObject(cube);
-        cube.transform.position = _spawnPosition;
+        base.Initialize(cube);
         cube.transform.rotation = Quaternion.identity;
         cube.gameObject.SetActive(true);
     }

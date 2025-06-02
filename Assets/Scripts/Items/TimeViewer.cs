@@ -26,7 +26,7 @@ public class TimeViewer : MonoBehaviour
     private void OnDisable()
     {
         _timer.ChangedTime -= DisplayTime;
-        _timer.EndedTime += RefreshTimer;
+        _timer.EndedTime -= RefreshTimer;
     }
 
     private void Update()

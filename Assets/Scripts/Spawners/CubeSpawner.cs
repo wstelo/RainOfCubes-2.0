@@ -16,7 +16,7 @@ public class CubeSpawner : Spawner<Cube>
 
     private void Start()
     {
-        _currentCoroutine = StartCoroutine(GetCubes());
+        _currentCoroutine = StartCoroutine(EnableObject());
     }
 
     private void OnEnable()
@@ -34,7 +34,7 @@ public class CubeSpawner : Spawner<Cube>
         StopCoroutine(_currentCoroutine);
     }
 
-    private IEnumerator GetCubes()
+    private IEnumerator EnableObject()
     {
         while (enabled)
         {
@@ -47,14 +47,14 @@ public class CubeSpawner : Spawner<Cube>
     public override void ReleasedObject(Item item)
     {
         base.ReleasedObject(item);
-        _bombSpawner.GetBomb(item.transform.position);
+        _bombSpawner.EnableObject(item.transform.position);
         item.RefreshParameters();
         Pool.Release(item);
     }
 
-    public override void GetObject(Item cube)
+    public override void Initialize(Item cube)
     {
-        base.GetObject(cube);
+        base.Initialize(cube);
         Vector3 position = new Vector3(Random.Range(_minPositionX, _maxPositionX), _positionY, Random.Range(_minPositionZ, _maxPositionZ));
         cube.transform.position = position;
         cube.transform.rotation = Quaternion.identity;

@@ -315,7 +315,7 @@ MonoBehaviour:
   _header: {fileID: 319388461}
   _totalPanel: {fileID: 650942297}
   _createdPanel: {fileID: 309150628}
-  _ActivePanel: {fileID: 2102070727}
+  _activePanel: {fileID: 2102070727}
 --- !u!114 &66906004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,6 +1309,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435465235}
   m_CullTransparentMesh: 1
+--- !u!1 &485905756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 485905757}
+  - component: {fileID: 485905759}
+  - component: {fileID: 485905758}
+  m_Layer: 0
+  m_Name: Explode Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &485905757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485905756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.88923115, y: -25.503109, z: 64.76619}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485905758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485905756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7ddc9e49f04cb49bf43cd7fee8a958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 2006237345}
+--- !u!114 &485905759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485905756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27018ccae39d41b46a69225a983f9062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionForce: 200
+  _explosionRadius: 10
 --- !u!1 &561901581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,7 +2811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75452083, y: 0.669}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.9998779, y: 1.4199219}
+  m_AnchoredPosition: {x: 0.99975586, y: 1.4199219}
   m_SizeDelta: {x: -2.0002441, y: -2.84021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1421645458
@@ -3342,7 +3402,7 @@ MonoBehaviour:
   _header: {fileID: 561901583}
   _totalPanel: {fileID: 2061866350}
   _createdPanel: {fileID: 1762990842}
-  _ActivePanel: {fileID: 1634308900}
+  _activePanel: {fileID: 1634308900}
 --- !u!1 &1735226467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,7 +4018,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2006237346}
   - component: {fileID: 2006237345}
-  - component: {fileID: 2006237344}
   - component: {fileID: 2006237349}
   m_Layer: 0
   m_Name: BombSpawner
@@ -3967,20 +4026,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2006237344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006237343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27018ccae39d41b46a69225a983f9062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _explosionForce: 300
-  _explosionRadius: 30
 --- !u!114 &2006237345
 MonoBehaviour:
   m_ObjectHideFlags: 0

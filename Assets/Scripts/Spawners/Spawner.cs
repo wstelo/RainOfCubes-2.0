@@ -22,14 +22,14 @@ public abstract class Spawner<T> : MonoBehaviour where T : Item
     {
         Pool = new ObjectPool<Item>(
             createFunc: () => CreateObject(),
-            actionOnGet: (item) => GetObject(item),
+            actionOnGet: (item) => Initialize(item),
             actionOnRelease: (item) => item.gameObject.SetActive(false),
             defaultCapacity: _poolCapacity,
             actionOnDestroy: (item) => DestroyObject(item),
             maxSize: _poolMaxSize);
     }
 
-    public virtual void GetObject(Item item)
+    public virtual void Initialize(Item item)
     {
         _totalObjectCount++;
         _activeObjectCount++;
